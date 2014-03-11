@@ -35,18 +35,18 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	/**
 	 * La fecha desde la que es valida la entidad.
 	 */
-	private Date validFrom;
+	protected Date validFrom;
 	/**
 	 * La fecha hasta la que es valida la entidad.
 	 */
-	private Date validTo;
+	protected Date validTo;
 
 	/**
 	 * Retorna la fecha desde la que es válida la entidad.
 	 * 
 	 * @return La feche desde la que es válida la entidad.
 	 */
-	@Column(name = "VALID_FROM", nullable = false)
+	@Column(name = "VALID_FROM", columnDefinition = "timestamp", nullable = false)
 	@javax.persistence.Temporal(TemporalType.TIMESTAMP)
 	public Date getValidFrom() {
 		return validFrom;
@@ -67,7 +67,7 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	 * 
 	 * @return La feche hasta la que es válida la entidad.
 	 */
-	@Column(name = "VALID_TO", nullable = true)
+	@Column(name = "VALID_TO", columnDefinition = "timestamp", nullable = true)
 	@javax.persistence.Temporal(TemporalType.TIMESTAMP)
 	public Date getValidTo() {
 		return validTo;

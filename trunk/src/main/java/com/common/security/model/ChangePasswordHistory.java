@@ -78,7 +78,7 @@ public class ChangePasswordHistory extends Entity<Long> implements Comparable<Da
 	}
 
 	@Id
-	@Column(name = "ID_SECURITY_CHANGE_PASSWORD_HISTORY")
+	@Column(name = "ID_SECURITY_CHANGE_PASSWORD_HISTORY", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
@@ -111,7 +111,7 @@ public class ChangePasswordHistory extends Entity<Long> implements Comparable<Da
 	 * 
 	 * @return La fecha en la que se realizó el cambio de password.
 	 */
-	@Column(name = "CHANGE_DATE", nullable = false)
+	@Column(name = "CHANGE_DATE", columnDefinition = "timestamp", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getChangeDate() {
 		return changeDate;
@@ -132,7 +132,7 @@ public class ChangePasswordHistory extends Entity<Long> implements Comparable<Da
 	 * 
 	 * @return La password codificada que fue cambiada.
 	 */
-	@Column(name = "PASSWORD", length = 256, nullable = false)
+	@Column(name = "PASSWORD", columnDefinition = "text", nullable = false)
 	public String getEncodePassword() {
 		return encodePassword;
 	}

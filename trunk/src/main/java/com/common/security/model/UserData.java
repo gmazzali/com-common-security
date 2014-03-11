@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.common.util.model.Entity;
 
@@ -95,7 +97,7 @@ public class UserData extends Entity<Long> {
 	}
 
 	@Id
-	@Column(name = "ID_SECURITY_USER_DATA")
+	@Column(name = "ID_SECURITY_USER_DATA", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
@@ -103,9 +105,9 @@ public class UserData extends Entity<Long> {
 	}
 
 	/**
-	 * Retorna el usuario.
+	 * Retorna el usuario de estos datos.
 	 * 
-	 * @return El usuario.
+	 * @return El usuario de estos datos.
 	 */
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_USER", referencedColumnName = "ID_SECURITY_USER", nullable = false)
@@ -114,10 +116,10 @@ public class UserData extends Entity<Long> {
 	}
 
 	/**
-	 * Carga el usuario.
+	 * Carga el usuario de estos datos.
 	 * 
 	 * @param user
-	 *            El usuario.
+	 *            El usuario de estos datos.
 	 */
 	public void setUser(User user) {
 		this.user = user;
@@ -128,7 +130,7 @@ public class UserData extends Entity<Long> {
 	 * 
 	 * @return El nombre real del usuario.
 	 */
-	@Column(name = "NAME", length = 256, nullable = false, unique = true)
+	@Column(name = "NAME", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -148,7 +150,7 @@ public class UserData extends Entity<Long> {
 	 * 
 	 * @return El apellido real del usuario.
 	 */
-	@Column(name = "SURNAME", length = 256, nullable = false, unique = true)
+	@Column(name = "SURNAME", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getSurname() {
 		return surname;
 	}
@@ -163,50 +165,123 @@ public class UserData extends Entity<Long> {
 		this.surname = surname;
 	}
 
+	/**
+	 * Retorna la fecha de nacimiento del usuario.
+	 * 
+	 * @return La fecha de nacimiento del usuario.
+	 */
+	@Column(name = "BIRTHDAY", columnDefinition = "timestamp")
+	@Temporal(TemporalType.DATE)
 	public Date getBirthday() {
 		return birthday;
 	}
 
+	/**
+	 * Carga la fecha de nacimiento del usuario.
+	 * 
+	 * @param birthday
+	 *            La fecha de nacimiento del usuario.
+	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
+	/**
+	 * Retorna la dirección del usuario.
+	 * 
+	 * @return La dirección del usuario.
+	 */
+	@Column(name = "ADDRESS", columnDefinition = "text", nullable = false)
 	public String getAddress() {
 		return address;
 	}
 
+	/**
+	 * Carga la dirección del usuario.
+	 * 
+	 * @param address
+	 *            La dirección del usuario.
+	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+	/**
+	 * Retorna el teléfono del usuario.
+	 * 
+	 * @return El teléfono del usuario.
+	 */
+	@Column(name = "TELEPHONE", columnDefinition = "varchar", length = 100, nullable = false)
 	public String getTelephone() {
 		return telephone;
 	}
 
+	/**
+	 * Carga el teléfono del usuario.
+	 * 
+	 * @param telephone
+	 *            El teléfono del usuario.
+	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
+	/**
+	 * Retorna el email del usuario.
+	 * 
+	 * @return El email del usuario.
+	 */
+	@Column(name = "EMAIL", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Carga el email del usuario.
+	 * 
+	 * @param email
+	 *            El email del usuario.
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Retorna el valor booleano que nos indica si vamos a verificar si la password de un usuario expira.
+	 * 
+	 * @return El valor booleano que nos indica si vamos a verificar si la password de un usuario expira.
+	 */
+	@Column(name = "PASSWORD_EXPIRATION_CHECKED", columnDefinition = "boolean", nullable = false)
 	public Boolean getPasswordExpirationChecked() {
 		return passwordExpirationChecked;
 	}
 
+	/**
+	 * Carga el valor booleano que nos indica si vamos a verificar si la password de un usuario expira.
+	 * 
+	 * @param passwordExpirationChecked
+	 *            El valor booleano que nos indica si vamos a verificar si la password de un usuario expira.
+	 */
 	public void setPasswordExpirationChecked(Boolean passwordExpirationChecked) {
 		this.passwordExpirationChecked = passwordExpirationChecked;
 	}
 
+	/**
+	 * Retorna la cantidad de días que vamos a dejar que una password sea válida desde la última vez que se cambio.
+	 * 
+	 * @return La cantidad de días que vamos a dejar que una password sea válida desde la última vez que se cambio.
+	 */
+	@Column(name = "PASSWORD_EXPIRATION_DAYS", columnDefinition = "integer", nullable = true)
 	public Integer getPasswordExpirationDays() {
 		return passwordExpirationDays;
 	}
 
+	/**
+	 * Carga la cantidad de días que vamos a dejar que una password sea válida desde la última vez que se cambio.
+	 * 
+	 * @param passwordExpirationDays
+	 *            La cantidad de días que vamos a dejar que una password sea válida desde la última vez que se cambio.
+	 */
 	public void setPasswordExpirationDays(Integer passwordExpirationDays) {
 		this.passwordExpirationDays = passwordExpirationDays;
 	}
