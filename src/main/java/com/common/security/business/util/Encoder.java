@@ -1,8 +1,8 @@
-package com.common.security.util;
+package com.common.security.business.util;
 
 import java.security.MessageDigest;
 
-import com.common.util.exception.UncheckedException;
+import com.common.security.domain.exception.SecurityUncheckedException;
 
 /**
  * La clase de codificación de strings.
@@ -47,7 +47,7 @@ public class Encoder {
 			// Transformamos la salida y la retornamos.
 			return Encoder.hexadecimalToString(digestor).toUpperCase();
 		} catch (Exception ex) {
-			throw new UncheckedException("errors.security.decode.missing");
+			throw new SecurityUncheckedException("The decode is missing", "errors.security.decode.missing");
 		}
 	}
 

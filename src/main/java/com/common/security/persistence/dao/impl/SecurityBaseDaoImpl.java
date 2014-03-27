@@ -1,13 +1,13 @@
-package com.common.security.dao.impl;
+package com.common.security.persistence.dao.impl;
 
 import java.io.Serializable;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.common.security.dao.SecurityBaseDao;
-import com.common.util.dao.impl.HibernateGenericDaoImpl;
-import com.common.util.model.Persistence;
+import com.common.security.persistence.dao.SecurityBaseDao;
+import com.common.util.domain.model.Persistence;
+import com.common.util.persistence.dao.impl.BaseDaoImpl;
 
 /**
  * La clase que implementa la interfaz base para los DAOs dentro de este framework.
@@ -21,7 +21,7 @@ import com.common.util.model.Persistence;
  * @param <PK>
  *            La clase que corresponde al PK de la clase que vamos a manejar en este DAO.
  */
-public abstract class SecurityBaseDaoImpl<E extends Persistence<PK>, PK extends Serializable> extends HibernateGenericDaoImpl<E, PK> implements
+public abstract class SecurityBaseDaoImpl<E extends Persistence<PK>, PK extends Serializable> extends BaseDaoImpl<E, PK> implements
 		SecurityBaseDao<E, PK> {
 	private static final long serialVersionUID = 1L;
 

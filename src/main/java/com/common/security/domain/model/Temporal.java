@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.common.util.model.Entity;
+import com.common.util.domain.model.Entity;
 
 /**
  * Representa una entidad temporal que posee un periodo de fechas acotado.

@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +19,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.common.security.util.Encoder;
-import com.common.security.util.EncoderType;
-import com.common.util.tool.VerifierUtil;
-import com.common.util.tool.date.DatePrecision;
-import com.common.util.tool.date.DateUtil;
+import com.common.security.business.util.Encoder;
+import com.common.security.business.util.EncoderType;
+import com.common.util.business.tool.VerifierUtil;
+import com.common.util.business.tool.date.DatePrecision;
+import com.common.util.business.tool.date.DateUtil;
 
 /**
  * Clase que representa un usuario global del sistema.

@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.common.util.model.Entity;
+import com.common.util.domain.model.Entity;
 
 /**
  * Representa los datos extras de un usuario.

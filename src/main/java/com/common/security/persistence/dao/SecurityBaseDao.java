@@ -1,9 +1,9 @@
-package com.common.security.dao;
+package com.common.security.persistence.dao;
 
 import java.io.Serializable;
 
-import com.common.util.dao.GenericDao;
-import com.common.util.model.Persistence;
+import com.common.util.domain.model.Persistence;
+import com.common.util.persistence.dao.BaseDao;
 
 /**
  * La interfaz que define el DAO base para el framework de seguridad.
@@ -17,5 +17,5 @@ import com.common.util.model.Persistence;
  * @param <PK>
  *            La clase que corresponde al PK de la clase que vamos a manejar en este DAO.
  */
-public interface SecurityBaseDao<E extends Persistence<PK>, PK extends Serializable> extends GenericDao<E, PK> {
+public interface SecurityBaseDao<E extends Persistence<PK>, PK extends Serializable> extends BaseDao<E, PK> {
 }

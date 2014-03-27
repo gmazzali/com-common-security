@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.common.util.model.Entity;
+import com.common.util.domain.model.Entity;
 
 /**
  * Abstracción que representa un Sistema o Aplicativo (desde el punto de vista de la seguridad).

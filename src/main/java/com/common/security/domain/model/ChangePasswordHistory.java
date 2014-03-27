@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import java.util.Date;
 
@@ -14,11 +14,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.common.util.model.Entity;
-import com.common.util.tool.FormatUtil;
-import com.common.util.tool.StringUtil;
-import com.common.util.tool.date.DatePrecision;
-import com.common.util.tool.date.DateUtil;
+import com.common.util.business.tool.FormatUtil;
+import com.common.util.business.tool.StringUtil;
+import com.common.util.business.tool.date.DatePrecision;
+import com.common.util.business.tool.date.DateUtil;
+import com.common.util.domain.model.Entity;
 
 /**
  * El historial de cambios de password de un usuario.
