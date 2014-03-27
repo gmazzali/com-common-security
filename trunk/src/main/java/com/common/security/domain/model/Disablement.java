@@ -1,4 +1,4 @@
-package com.common.security.model;
+package com.common.security.domain.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.common.util.tool.FormatUtil;
+import com.common.util.business.tool.FormatUtil;
 
 /**
  * Representa si un usuario fue deshabilitado.

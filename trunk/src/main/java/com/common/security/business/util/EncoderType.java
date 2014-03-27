@@ -1,4 +1,4 @@
-package com.common.security.util;
+package com.common.security.business.util;
 
 /**
  * Los tiops de codificaciones que podemos tener dentro del sistema.
