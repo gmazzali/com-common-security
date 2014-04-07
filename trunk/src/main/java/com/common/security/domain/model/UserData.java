@@ -90,9 +90,9 @@ public class UserData extends Entity<Long> {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(this.name);
-		buffer.append(", ");
 		buffer.append(this.surname);
+		buffer.append(", ");
+		buffer.append(this.name);
 		return buffer.toString();
 	}
 

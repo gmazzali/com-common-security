@@ -67,7 +67,7 @@ public class User extends Temporal<Long> {
 	/**
 	 * El historial de cambios de password.
 	 */
-	private List<ChangePasswordHistory> changePasswordHistories;
+	private List<ChangePassword> changePasswords;
 	/**
 	 * El historial de dehabilitaciones.
 	 */
@@ -78,13 +78,13 @@ public class User extends Temporal<Long> {
 	 */
 	public User() {
 		super();
-		this.changePasswordHistories = new ArrayList<ChangePasswordHistory>();
+		this.changePasswords = new ArrayList<ChangePassword>();
 		this.disablements = new ArrayList<Disablement>();
 	}
 
 	@Override
 	public String toString() {
-		return this.getUsername();
+		return this.username;
 	}
 
 	@Id
@@ -203,64 +203,44 @@ public class User extends Temporal<Long> {
 	 * 
 	 * @return El historial de los cambios de password que realizo el usuario.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", targetEntity = ChangePasswordHistory.class, orphanRemoval = true)
-	public List<ChangePasswordHistory> getChangePasswordHistories() {
-		return changePasswordHistories;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = ChangePassword.Attributes.USER, targetEntity = ChangePassword.class, orphanRemoval = true)
+	public List<ChangePassword> getChangePassword() {
+		return changePasswords;
 	}
 
 	/**
 	 * Carga el historial de los cambios de password que realizo el usuario.
 	 * 
-	 * @param changePasswordHistories
+	 * @param changePasswords
 	 *            El historial de los cambios de password que realizo el usuario.
 	 */
-	public void setChangePasswordHistories(List<ChangePasswordHistory> changePasswordHistories) {
-		this.changePasswordHistories = changePasswordHistories;
+	public void setChangePassword(List<ChangePassword> changePasswords) {
+		this.changePasswords = changePasswords;
 	}
 
 	/**
 	 * Permite cargar una entrada en el historial de cambios de password del usuario.
 	 * 
-	 * @param changePasswordHistory
+	 * @param changePassword
 	 *            La entrada que vamos a guardar para este usuario.
 	 */
-	public void addChangePasswordHistory(ChangePasswordHistory changePasswordHistory) {
-		changePasswordHistory.setUser(this);
-		this.changePasswordHistories.add(changePasswordHistory);
+	public void addChangePassword(ChangePassword changePassword) {
+		if (changePassword != null) {
+			this.changePasswords.add(changePassword);
+			changePassword.setUser(this);
+		}
 	}
 
 	/**
 	 * Permite quitar una entrada en el historial de cambios de password del usuario.
 	 * 
-	 * @param changePasswordHistory
+	 * @param changePassword
 	 *            La entrada que vamos a quitar de este usuario.
 	 */
-	public void removeChangePasswordHistory(ChangePasswordHistory changePasswordHistory) {
-		changePasswordHistory.setUser(null);
-		this.changePasswordHistories.remove(changePasswordHistory);
-	}
-
-	/**
-	 * Permite cargar un conjunto de entradas en el historial de cambios de password del usuario.
-	 * 
-	 * @param changePasswordHistories
-	 *            El conjunto de entradas que vamos a guardar para este usuario.
-	 */
-	public void addAllChangePasswordHistories(List<ChangePasswordHistory> changePasswordHistories) {
-		for (ChangePasswordHistory changePasswordHistory : changePasswordHistories) {
-			this.addChangePasswordHistory(changePasswordHistory);
-		}
-	}
-
-	/**
-	 * Permite quitar un conjunto de entradas en el historial de cambios de password del usuario.
-	 * 
-	 * @param changePasswordHistories
-	 *            El conjunto de entradas que vamos a quitar de este usuario.
-	 */
-	public void removeAllChangePasswordHistories(List<ChangePasswordHistory> changePasswordHistories) {
-		for (ChangePasswordHistory changePasswordHistory : changePasswordHistories) {
-			this.removeChangePasswordHistory(changePasswordHistory);
+	public void removeChangePassword(ChangePassword changePassword) {
+		if (this.getChangePassword().contains(changePassword)) {
+			this.changePasswords.remove(changePassword);
+			changePassword.setUser(null);
 		}
 	}
 
@@ -269,7 +249,7 @@ public class User extends Temporal<Long> {
 	 * 
 	 * @return El historial de las deshabilitaciones del usuario.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", targetEntity = Disablement.class, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Disablement.Attributes.USER, targetEntity = Disablement.class, orphanRemoval = true)
 	public List<Disablement> getDisablements() {
 		return disablements;
 	}
@@ -277,7 +257,7 @@ public class User extends Temporal<Long> {
 	/**
 	 * Carga el historial de las deshabilitaciones del usuario.
 	 * 
-	 * @param changePasswordHistories
+	 * @param changePasswords
 	 *            El historial de las deshabilitaciones del usuario.
 	 */
 	public void setDisablements(List<Disablement> disablements) {
@@ -291,8 +271,10 @@ public class User extends Temporal<Long> {
 	 *            La entrada que vamos a guardar para este usuario.
 	 */
 	public void addDisablement(Disablement disablement) {
-		disablement.setUser(this);
-		this.disablements.add(disablement);
+		if (disablement != null) {
+			this.disablements.add(disablement);
+			disablement.setUser(this);
+		}
 	}
 
 	/**
@@ -302,31 +284,9 @@ public class User extends Temporal<Long> {
 	 *            La entrada que vamos a quitar de este usuario.
 	 */
 	public void removeDisablement(Disablement disablement) {
-		disablement.setUser(null);
-		this.disablements.remove(disablement);
-	}
-
-	/**
-	 * Permite cargar un conjunto de entradas en el historial de las deshabilitaciones del usuario.
-	 * 
-	 * @param disablements
-	 *            El conjunto de entradas que vamos a guardar para este usuario.
-	 */
-	public void addAllDisablements(List<Disablement> disablements) {
-		for (Disablement disablement : disablements) {
-			this.addDisablement(disablement);
-		}
-	}
-
-	/**
-	 * Permite quitar un conjunto de entradas en el historial de las deshabilitaciones del usuario.
-	 * 
-	 * @param disablements
-	 *            El conjunto de entradas que vamos a quitar de este usuario.
-	 */
-	public void removeAllDisablements(List<Disablement> disablements) {
-		for (Disablement disablement : disablements) {
-			this.removeDisablement(disablement);
+		if (this.getDisablements().contains(disablement)) {
+			this.disablements.remove(disablement);
+			disablement.setUser(null);
 		}
 	}
 
