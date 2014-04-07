@@ -34,6 +34,14 @@ public class System extends Entity<Long> {
 	 * El listado de los perfiles del sistema.
 	 */
 	private Set<Profile> profiles;
+	/**
+	 * El listado de los recursos disponibles en el sistema.
+	 */
+	private Set<Resource> resources;
+	/**
+	 * El listado de las acciones disponibles en el sistema.
+	 */
+	private Set<Action> actions;
 
 	/**
 	 * El constructor de un sistema.
@@ -119,6 +127,98 @@ public class System extends Entity<Long> {
 		if (this.getProfiles().contains(profile)) {
 			this.getProfiles().remove(profile);
 			profile.setSystem(null);
+		}
+	}
+
+	/**
+	 * Retorna el conjunto de recursos del sistema.
+	 * 
+	 * @return El conjunto de recursos del sistema.
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Resource.Attributes.SYSTEM, targetEntity = Disablement.class, orphanRemoval = true)
+	public Set<Resource> getResources() {
+		return this.resources;
+	}
+
+	/**
+	 * Carga el conjunto de recursos del sistema.
+	 * 
+	 * @param resources
+	 *            El conjunto de recursos del sistema.
+	 */
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
+
+	/**
+	 * Permite agregar un nuevo recurso al sistema.
+	 * 
+	 * @param resource
+	 *            El nuevo recurso que vamos a agregar en el sistema.
+	 */
+	public void addResource(Resource resource) {
+		if (resource != null) {
+			this.getResources().add(resource);
+			resource.setSystem(this);
+		}
+	}
+
+	/**
+	 * Permite quitar un recurso al sistema.
+	 * 
+	 * @param resource
+	 *            El recurso que vamos a quitar del sistema.
+	 */
+	public void removeResource(Resource resource) {
+		if (this.getResources().contains(resource)) {
+			this.getResources().remove(resource);
+			resource.setSystem(null);
+		}
+	}
+
+	/**
+	 * Retorna el conjunto de acciones del sistema.
+	 * 
+	 * @return El conjunto de acciones del sistema.
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Action.Attributes.SYSTEM, targetEntity = Disablement.class, orphanRemoval = true)
+	public Set<Action> getActions() {
+		return this.actions;
+	}
+
+	/**
+	 * Carga el conjunto de acciones del sistema.
+	 * 
+	 * @param resources
+	 *            El conjunto de acciones del sistema.
+	 */
+	public void setActions(Set<Action> actions) {
+		this.actions = actions;
+	}
+
+	/**
+	 * Permite agregar una nueva acción al sistema.
+	 * 
+	 * @param resource
+	 *            El nuevo acciones que vamos a agregar en el sistema.
+	 */
+	public void addAction(Action action) {
+		if (action != null) {
+			this.getActions().add(action);
+			action.setSystem(this);
+		}
+	}
+
+	/**
+	 * Permite quitar una acción al sistema.
+	 * 
+	 * @param resource
+	 *            La acción que vamos a quitar del sistema.
+	 */
+	public void removeAction(Action action) {
+		if (this.getActions().contains(action)) {
+			this.getActions().remove(action);
+			action.setSystem(null);
 		}
 	}
 }
