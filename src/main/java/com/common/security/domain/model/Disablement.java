@@ -29,18 +29,18 @@ public class Disablement extends Temporal<Long> {
 	 * @see Entity.Attributes
 	 */
 	public interface Attributes extends Temporal.Attributes {
-		public static final String MOTIVE = "motive";
 		public static final String USER = "user";
+		public static final String MOTIVE = "motive";
 	}
 
-	/**
-	 * El motivo por el que se deshabilito.
-	 */
-	private String motive;
 	/**
 	 * El usuario de la deshabilitación.
 	 */
 	private User user;
+	/**
+	 * El motivo por el que se deshabilito.
+	 */
+	private String motive;
 
 	/**
 	 * El constructor de una deshabilitación.
@@ -70,9 +70,9 @@ public class Disablement extends Temporal<Long> {
 	}
 
 	/**
-	 * Retorna el usuario de estos datos.
+	 * Retorna el usuario de esta deshabilitación.
 	 * 
-	 * @return El usuario de estos datos.
+	 * @return El usuario de esta deshabilitación.
 	 */
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_USER", referencedColumnName = "ID_SECURITY_USER", nullable = false)
@@ -81,10 +81,10 @@ public class Disablement extends Temporal<Long> {
 	}
 
 	/**
-	 * Carga el usuario de estos datos.
+	 * Carga el usuario de esta deshabilitación.
 	 * 
 	 * @param user
-	 *            El usuario de estos datos.
+	 *            El usuario de esta deshabilitación.
 	 */
 	public void setUser(User user) {
 		this.user = user;

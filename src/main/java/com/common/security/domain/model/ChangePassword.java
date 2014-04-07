@@ -29,7 +29,7 @@ import com.common.util.domain.model.Entity;
  */
 @Table(name = "SECURITY_CHANGE_PASSWORD_HISTORIES")
 @javax.persistence.Entity(name = "ChangePasswordHistory")
-public class ChangePasswordHistory extends Entity<Long> implements Comparable<Date> {
+public class ChangePassword extends Entity<Long> implements Comparable<Date> {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -57,7 +57,7 @@ public class ChangePasswordHistory extends Entity<Long> implements Comparable<Da
 	/**
 	 * El contructor de una historia de cambio de password de un usuario.
 	 */
-	public ChangePasswordHistory() {
+	public ChangePassword() {
 		super();
 	}
 
