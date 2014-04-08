@@ -4,12 +4,12 @@ package com.common.security.business.util;
  * Los tiops de codificaciones que podemos tener dentro del sistema.
  * 
  * <ul>
- * <li>{@link EncoderType#MD2}</li>
- * <li>{@link EncoderType#MD5}</li>
- * <li>{@link EncoderType#SHA_1}</li>
- * <li>{@link EncoderType#SHA_256}</li>
- * <li>{@link EncoderType#SHA_384}</li>
- * <li>{@link EncoderType#SHA_512}</li>
+ * <li>{@link EncoderType#MD2 MD2}</li>
+ * <li>{@link EncoderType#MD5 MD5}</li>
+ * <li>{@link EncoderType#SHA_1 SHA 1}</li>
+ * <li>{@link EncoderType#SHA_256 SHA 256}</li>
+ * <li>{@link EncoderType#SHA_384 SHA 384}</li>
+ * <li>{@link EncoderType#SHA_512 SHA 512}</li>
  * </ul>
  * 
  * @since 10/03/2014

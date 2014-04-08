@@ -1,8 +1,8 @@
 package com.common.security.domain.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +45,8 @@ public class User extends Temporal<Long> {
 		public static final String ENCODE_TYPE = "encoderType";
 		public static final String ENCODE_PASSWORD = "encodedPassword";
 		public static final String USER_DATA = "userData";
-		public static final String CHANGE_PASSWORD_HISTORIES = "changePasswordHistories";
+		public static final String CHANGE_PASSWORDS = "changePasswords";
+		public static final String DISABLEMENTS = "disablements";
 	}
 
 	/**
@@ -67,19 +68,19 @@ public class User extends Temporal<Long> {
 	/**
 	 * El historial de cambios de password.
 	 */
-	private List<ChangePassword> changePasswords;
+	private Set<ChangePassword> changePasswords;
 	/**
-	 * El historial de dehabilitaciones.
+	 * El historial de deshabilitaciones.
 	 */
-	private List<Disablement> disablements;
+	private Set<Disablement> disablements;
 
 	/**
 	 * El constructor de un usuario.
 	 */
 	public User() {
 		super();
-		this.changePasswords = new ArrayList<ChangePassword>();
-		this.disablements = new ArrayList<Disablement>();
+		this.changePasswords = new HashSet<ChangePassword>();
+		this.disablements = new HashSet<Disablement>();
 	}
 
 	@Override
@@ -159,22 +160,22 @@ public class User extends Temporal<Long> {
 	/**
 	 * Permite verificar si una password dada (sin codificarse) es igual a la password que tenemos almacenada en el usuario.
 	 * 
-	 * @param password
+	 * @param plainPassword
 	 *            La password que queremos verificar si es la misma que la que tenemos actualmente en este usuario.
 	 * @return <i>true</i> en caso de que la password recibida es igual a la almacenada dentro del usuario, en caso contrario retornamos <i>false</i>.
 	 */
-	public boolean samePassword(String password) {
-		return VerifierUtil.<String> equals(this.encodedPassword, Encoder.encode(password, this.encoderType));
+	public boolean samePassword(String plainPassword) {
+		return VerifierUtil.<String> equals(this.encodedPassword, Encoder.encode(plainPassword, this.encoderType));
 	}
 
 	/**
 	 * Carga la password no codificada.
 	 * 
-	 * @param password
+	 * @param plainPassword
 	 *            La password no codificada.
 	 */
-	public void setPassword(String password) {
-		this.encodedPassword = Encoder.encode(password, this.encoderType);
+	public void setPassword(String plainPassword) {
+		this.encodedPassword = Encoder.encode(plainPassword, this.encoderType);
 	}
 
 	/**
@@ -204,7 +205,7 @@ public class User extends Temporal<Long> {
 	 * @return El historial de los cambios de password que realizo el usuario.
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = ChangePassword.Attributes.USER, targetEntity = ChangePassword.class, orphanRemoval = true)
-	public List<ChangePassword> getChangePassword() {
+	public Set<ChangePassword> getChangePassword() {
 		return changePasswords;
 	}
 
@@ -214,7 +215,7 @@ public class User extends Temporal<Long> {
 	 * @param changePasswords
 	 *            El historial de los cambios de password que realizo el usuario.
 	 */
-	public void setChangePassword(List<ChangePassword> changePasswords) {
+	public void setChangePassword(Set<ChangePassword> changePasswords) {
 		this.changePasswords = changePasswords;
 	}
 
@@ -250,7 +251,7 @@ public class User extends Temporal<Long> {
 	 * @return El historial de las deshabilitaciones del usuario.
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Disablement.Attributes.USER, targetEntity = Disablement.class, orphanRemoval = true)
-	public List<Disablement> getDisablements() {
+	public Set<Disablement> getDisablements() {
 		return disablements;
 	}
 
@@ -260,7 +261,7 @@ public class User extends Temporal<Long> {
 	 * @param changePasswords
 	 *            El historial de las deshabilitaciones del usuario.
 	 */
-	public void setDisablements(List<Disablement> disablements) {
+	public void setDisablements(Set<Disablement> disablements) {
 		this.disablements = disablements;
 	}
 

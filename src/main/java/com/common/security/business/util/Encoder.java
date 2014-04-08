@@ -19,10 +19,10 @@ public class Encoder {
 	 * @param string
 	 *            El texto pasado para su codificación. En caso de que sea un valor <code>null</code>, se retorna <code>null</code>.
 	 * @param encoderType
-	 *            El algoritmo de encriptacion deseado. Puede ser: {@link EncoderType#MD2}, {@link EncoderType#MD5}, {@link EncoderType#SHA_1},
-	 *            {@link EncoderType#SHA_256}, {@link EncoderType#SHA_384}, {@link EncoderType#SHA_512}. En caso de que sea un valor <code>null</code>
-	 *            , se toma el valor {@link EncoderType#MD5}.
-	 * @return El string encritado y convertido en mayúscula, o un valor <code>null</code> en caso de que el string recibido sea <code>null</code>.
+	 *            El algoritmo de encriptacion deseado. Puede ser: {@link EncoderType#MD2 MD2}, {@link EncoderType#MD5 MD5}, {@link EncoderType#SHA_1
+	 *            SHA 1}, {@link EncoderType#SHA_256 SHA 256}, {@link EncoderType#SHA_384 SHA 384}, {@link EncoderType#SHA_512 SHA 512}. En caso de
+	 *            que sea un valor <code>null</code> , se toma el valor {@link EncoderType#MD5 MD5}.
+	 * @return El string encritado y pasado a mayúscula, o un valor <code>null</code> en caso de que el string recibido sea <code>null</code>.
 	 */
 	public static String encode(String string, EncoderType encoderType) {
 		// Si el string es nulo, retornamos nulo.
