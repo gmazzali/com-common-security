@@ -29,7 +29,7 @@ import com.common.util.domain.model.Entity;
  */
 @Table(name = "SECURITY_CHANGE_PASSWORD_HISTORIES")
 @javax.persistence.Entity(name = "ChangePasswordHistory")
-public class ChangePassword extends Entity<Long> implements Comparable<Date> {
+public class ChangePassword extends Entity<Long> implements Comparable<ChangePassword> {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,7 +46,7 @@ public class ChangePassword extends Entity<Long> implements Comparable<Date> {
 	 */
 	private User user;
 	/**
-	 * La password que acabamos de cambiarle al usuario.
+	 * La password que acabamos de asignarle al usuario.
 	 */
 	private String encodePassword;
 	/**
@@ -66,15 +66,15 @@ public class ChangePassword extends Entity<Long> implements Comparable<Date> {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(StringUtil.toString(this.user));
 		buffer.append(" ");
-		buffer.append(FormatUtil.formatDate(changeDate));
+		buffer.append(FormatUtil.formatDate(this.changeDate));
 		buffer.append(" ");
 		buffer.append(this.encodePassword);
 		return buffer.toString();
 	}
 
 	@Override
-	public int compareTo(Date date) {
-		return DateUtil.compare(this.changeDate, date, DatePrecision.MILLISECOND);
+	public int compareTo(ChangePassword changePassword) {
+		return DateUtil.compare(this.changeDate, changePassword.changeDate, DatePrecision.MILLISECOND);
 	}
 
 	@Id
@@ -107,6 +107,26 @@ public class ChangePassword extends Entity<Long> implements Comparable<Date> {
 	}
 
 	/**
+	 * Retorna la password codificada que fue cambiada.
+	 * 
+	 * @return La password codificada que fue cambiada.
+	 */
+	@Column(name = "PASSWORD", columnDefinition = "text", nullable = false)
+	public String getEncodePassword() {
+		return encodePassword;
+	}
+
+	/**
+	 * Carga la password codificada que fue cambiada.
+	 * 
+	 * @param encodePassword
+	 *            La password codificada que fue cambiada.
+	 */
+	public void setEncodePassword(String encodePassword) {
+		this.encodePassword = encodePassword;
+	}
+
+	/**
 	 * Retorna la fecha en la que se realizó el cambio de password al usuario.
 	 * 
 	 * @return La fecha en la que se realizó el cambio de password.
@@ -125,25 +145,5 @@ public class ChangePassword extends Entity<Long> implements Comparable<Date> {
 	 */
 	public void setChangeDate(Date changeDate) {
 		this.changeDate = changeDate;
-	}
-
-	/**
-	 * Retorna la password codificada que fue cambiada.
-	 * 
-	 * @return La password codificada que fue cambiada.
-	 */
-	@Column(name = "PASSWORD", columnDefinition = "text", nullable = false)
-	public String getEncodePassword() {
-		return encodePassword;
-	}
-
-	/**
-	 * Carga la password codificada que fue cambiada.
-	 * 
-	 * @param encodePassword
-	 *            La password codificada que fue cambiada.
-	 */
-	public void setEncodePassword(String encodePassword) {
-		this.encodePassword = encodePassword;
 	}
 }
