@@ -7,9 +7,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -62,6 +66,14 @@ public class Profile extends Temporal<Long> {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	@Id
+	@Column(name = "ID_SECURITY_PROFILE", columnDefinition = "integer")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Override
+	public Long getId() {
+		return super.getId();
 	}
 
 	/**
@@ -130,7 +142,8 @@ public class Profile extends Temporal<Long> {
 	 * 
 	 * @return El conjunto de roles de este perfil.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Role.Attributes.PROFILE, targetEntity = Disablement.class, orphanRemoval = true)
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinTable(name = "SECURITY_ROLES_IN_PROFILES", joinColumns = { @JoinColumn(name = "ID_SECURITY_PROFILE") }, inverseJoinColumns = { @JoinColumn(name = "ID_SECURITY_ROLE") })
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -154,7 +167,6 @@ public class Profile extends Temporal<Long> {
 	public void addRole(Role role) {
 		if (role != null) {
 			this.getRoles().add(role);
-			role.setProfile(this);
 		}
 	}
 
@@ -167,7 +179,6 @@ public class Profile extends Temporal<Long> {
 	public void removeRole(Role role) {
 		if (this.getRoles().contains(role)) {
 			this.getRoles().remove(role);
-			role.setProfile(null);
 		}
 	}
 }
