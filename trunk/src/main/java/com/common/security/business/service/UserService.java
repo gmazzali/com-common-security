@@ -19,4 +19,13 @@ public interface UserService extends SecurityBaseService<User, Long> {
 	 *            El DAO de los usuarios.
 	 */
 	public void setUserDao(UserDao userDao);
+
+	/**
+	 * Permite saber si un usuario se encuentra deshabilitado dentro del sistema.
+	 * 
+	 * @param El
+	 *            usuario que vamos a validar si esta habilitado o no dentro del sistema.
+	 * @return <i>true</i> en caso de que el usuario actualmente se encuentre deshabilitado, en caso contrario, retorna <i>false</i>.
+	 */
+	public Boolean isDisabledUser(User user);
 }

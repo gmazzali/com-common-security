@@ -1,6 +1,5 @@
 package com.common.security.domain.model;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,13 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.common.security.business.util.Encoder;
 import com.common.security.business.util.EncoderType;
 import com.common.util.business.tool.VerifierUtil;
-import com.common.util.business.tool.date.DatePrecision;
-import com.common.util.business.tool.date.DateUtil;
 
 /**
  * Clase que representa un usuario global del sistema.
@@ -85,7 +81,11 @@ public class User extends Temporal<Long> {
 
 	@Override
 	public String toString() {
-		return this.username;
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(super.toString());
+		buffer.append(" ");
+		buffer.append(this.username);
+		return buffer.toString();
 	}
 
 	@Id
@@ -289,21 +289,5 @@ public class User extends Temporal<Long> {
 			this.disablements.remove(disablement);
 			disablement.setUser(null);
 		}
-	}
-
-	/**
-	 * Permite saber si un usuario se encuentra deshabilitado dentro del sistema.
-	 * 
-	 * @return <i>true</i> en caso de que el usuario actualmente se encuentre deshabilitado, en caso contrario, retorna <i>false</i>.
-	 */
-	@Transient
-	public Boolean isDisabledUser() {
-		Date today = new Date();
-		for (Disablement disablement : this.disablements) {
-			if (DateUtil.between(today, disablement.getValidFrom(), disablement.getValidTo(), DatePrecision.MILLISECOND)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }

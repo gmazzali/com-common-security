@@ -10,6 +10,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.common.util.business.tool.FormatUtil;
 import com.common.util.domain.model.Entity;
 
 /**
@@ -40,6 +41,50 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	 * La fecha hasta la que es valida la entidad.
 	 */
 	protected Date validTo;
+
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("[");
+		buffer.append(FormatUtil.formatDate(this.validFrom));
+		buffer.append("-");
+		buffer.append(FormatUtil.formatDate(this.validTo));
+		buffer.append("] ");
+		return buffer.toString();
+	}
+
+	/**
+	 * Determina si la instancia actual esta vigente. Una instancia de Temporal esta vigente, cuando la fecha validFrom o validTo son nulos o el
+	 * objeto date es mayor o igual a validFrom y menor o igual a validTo.
+	 * 
+	 * @param date
+	 *            fecha sobre la cual se determina la validez.
+	 * @return <i>true</i> si al entidad es vigente para la fecha recibida, en caso contrario retorna <i>false</i>.
+	 */
+	@Transient
+	public boolean isValid(Date date) {
+		boolean result = true;
+		long datemilliseconds = date.getTime();
+
+		if (this.getValidFrom() != null) {
+			result = result && getValidFrom().getTime() <= datemilliseconds;
+		}
+
+		if (this.getValidTo() != null) {
+			result = result && getValidTo().getTime() >= datemilliseconds;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Determina si la instancia actual esta vigente, tomando como fecha de referencia la fecha actual.
+	 * 
+	 * @return <i>true</i> si al entidad es vigente para la fecha actual, en caso contrario retorna <i>false</i>.
+	 */
+	@Transient
+	public boolean isValid() {
+		return this.isValid(new Date());
+	}
 
 	/**
 	 * Retorna la fecha desde la que es válida la entidad.
@@ -81,39 +126,5 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	 */
 	public void setValidTo(Date validTo) {
 		this.validTo = validTo;
-	}
-
-	/**
-	 * Determina si la instancia actual esta vigente. Una instancia de Temporal esta vigente, cuando la fecha validFrom o validTo son nulos o el
-	 * objeto date es mayor o igual a validFrom y menor o igual a validTo.
-	 * 
-	 * @param date
-	 *            fecha sobre la cual se determina la validez.
-	 * @return <i>true</i> si al entidad es vigente para la fecha recibida, en caso contrario retorna <i>false</i>.
-	 */
-	@Transient
-	public boolean isValid(Date date) {
-		boolean result = true;
-		long datemilliseconds = date.getTime();
-
-		if (this.getValidFrom() != null) {
-			result = result && getValidFrom().getTime() <= datemilliseconds;
-		}
-
-		if (this.getValidTo() != null) {
-			result = result && getValidTo().getTime() >= datemilliseconds;
-		}
-
-		return result;
-	}
-
-	/**
-	 * Determina si la instancia actual esta vigente, tomando como fecha de referencia la fecha actual.
-	 * 
-	 * @return <i>true</i> si al entidad es vigente para la fecha actual, en caso contrario retorna <i>false</i>.
-	 */
-	@Transient
-	public boolean isValid() {
-		return this.isValid(new Date());
 	}
 }
