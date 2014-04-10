@@ -27,8 +27,8 @@ import com.common.util.domain.model.Entity;
  * @author Guillermo Mazzali
  * @version 1.0
  */
-@Table(name = "SECURITY_CHANGE_PASSWORD_HISTORIES")
-@javax.persistence.Entity(name = "ChangePasswordHistory")
+@Table(name = "SECURITY_CHANGE_PASSWORDS")
+@javax.persistence.Entity(name = "ChangePassword")
 public class ChangePassword extends Entity<Long> implements Comparable<ChangePassword> {
 	private static final long serialVersionUID = 1L;
 
@@ -78,7 +78,7 @@ public class ChangePassword extends Entity<Long> implements Comparable<ChangePas
 	}
 
 	@Id
-	@Column(name = "ID_SECURITY_CHANGE_PASSWORD_HISTORY", columnDefinition = "integer")
+	@Column(name = "ID_SECURITY_CHANGE_PASSWORD", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {

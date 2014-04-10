@@ -53,7 +53,11 @@ public class System extends Entity<Long> {
 
 	@Override
 	public String toString() {
-		return this.name;
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(super.toString());
+		buffer.append(" ");
+		buffer.append(this.name);
+		return buffer.toString();
 	}
 
 	@Id
@@ -89,7 +93,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de perfiles del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Profile.Attributes.SYSTEM, targetEntity = Disablement.class, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Profile.Attributes.SYSTEM, targetEntity = Profile.class, orphanRemoval = true)
 	public Set<Profile> getProfiles() {
 		return profiles;
 	}
@@ -135,7 +139,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de recursos del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Resource.Attributes.SYSTEM, targetEntity = Disablement.class, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Resource.Attributes.SYSTEM, targetEntity = Resource.class, orphanRemoval = true)
 	public Set<Resource> getResources() {
 		return this.resources;
 	}
@@ -181,7 +185,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de acciones del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Action.Attributes.SYSTEM, targetEntity = Disablement.class, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Action.Attributes.SYSTEM, targetEntity = Action.class, orphanRemoval = true)
 	public Set<Action> getActions() {
 		return this.actions;
 	}

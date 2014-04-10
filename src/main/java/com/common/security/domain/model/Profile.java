@@ -65,7 +65,11 @@ public class Profile extends Temporal<Long> {
 
 	@Override
 	public String toString() {
-		return this.name;
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(super.toString());
+		buffer.append(" ");
+		buffer.append(this.name);
+		return buffer.toString();
 	}
 
 	@Id

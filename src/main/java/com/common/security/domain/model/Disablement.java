@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.common.util.business.tool.FormatUtil;
-
 /**
  * Representa si un usuario fue deshabilitado.
  * 
@@ -52,11 +50,8 @@ public class Disablement extends Temporal<Long> {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("[");
-		buffer.append(FormatUtil.formatDate(this.validFrom));
-		buffer.append("-");
-		buffer.append(FormatUtil.formatDate(this.validTo));
-		buffer.append("] ");
+		buffer.append(super.toString());
+		buffer.append(" ");
 		buffer.append(this.motive);
 		return buffer.toString();
 	}
