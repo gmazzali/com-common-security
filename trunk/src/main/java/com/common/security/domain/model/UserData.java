@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -109,10 +109,10 @@ public class UserData extends Entity<Long> {
 	 * 
 	 * @return El usuario de estos datos.
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_USER", referencedColumnName = "ID_SECURITY_USER", nullable = false)
 	public User getUser() {
-		return user;
+		return this.user;
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "NAME", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "SURNAME", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getSurname() {
-		return surname;
+		return this.surname;
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class UserData extends Entity<Long> {
 	@Column(name = "BIRTHDAY", columnDefinition = "timestamp")
 	@Temporal(TemporalType.DATE)
 	public Date getBirthday() {
-		return birthday;
+		return this.birthday;
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "ADDRESS", columnDefinition = "text", nullable = false)
 	public String getAddress() {
-		return address;
+		return this.address;
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "TELEPHONE", columnDefinition = "varchar", length = 100, nullable = false)
 	public String getTelephone() {
-		return telephone;
+		return this.telephone;
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "EMAIL", columnDefinition = "varchar", length = 255, nullable = false)
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "PASSWORD_EXPIRATION_CHECKED", columnDefinition = "boolean", nullable = false)
 	public Boolean getPasswordExpirationChecked() {
-		return passwordExpirationChecked;
+		return this.passwordExpirationChecked;
 	}
 
 	/**
@@ -273,7 +273,7 @@ public class UserData extends Entity<Long> {
 	 */
 	@Column(name = "PASSWORD_EXPIRATION_DAYS", columnDefinition = "integer", nullable = true)
 	public Integer getPasswordExpirationDays() {
-		return passwordExpirationDays;
+		return this.passwordExpirationDays;
 	}
 
 	/**
