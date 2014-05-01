@@ -6,7 +6,7 @@ import com.common.security.business.service.ResourceService;
 import com.common.security.domain.model.Resource;
 import com.common.security.persistence.dao.ResourceDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los recursos.
@@ -26,7 +26,7 @@ public class ResourceServiceImpl extends SecurityBaseServiceImpl<Resource, Long>
 	}
 
 	@Override
-	public void validate(Resource entity) throws CheckedException {
+	public void validate(Resource entity) throws UncheckedException {
 		// TODO Hacer el validador del recurso.
 	}
 }

@@ -6,7 +6,7 @@ import com.common.security.business.service.SystemService;
 import com.common.security.domain.model.System;
 import com.common.security.persistence.dao.SystemDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los sistemas.
@@ -26,7 +26,7 @@ public class SystemServiceImpl extends SecurityBaseServiceImpl<System, Long> imp
 	}
 
 	@Override
-	public void validate(System entity) throws CheckedException {
+	public void validate(System entity) throws UncheckedException {
 		// TODO Hacer el validador del sistema.
 	}
 }

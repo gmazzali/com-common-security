@@ -6,7 +6,7 @@ import com.common.security.business.service.AccessService;
 import com.common.security.domain.model.Access;
 import com.common.security.persistence.dao.AccessDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los accesos.
@@ -26,7 +26,7 @@ public class AccessServiceImpl extends SecurityBaseServiceImpl<Access, Long> imp
 	}
 
 	@Override
-	public void validate(Access entity) throws CheckedException {
+	public void validate(Access entity) throws UncheckedException {
 		// TODO Hacer el validador del acceso.
 	}
 }

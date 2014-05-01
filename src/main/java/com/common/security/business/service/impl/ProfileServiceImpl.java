@@ -6,7 +6,7 @@ import com.common.security.business.service.ProfileService;
 import com.common.security.domain.model.Profile;
 import com.common.security.persistence.dao.ProfileDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los perfiles.
@@ -26,7 +26,7 @@ public class ProfileServiceImpl extends SecurityBaseServiceImpl<Profile, Long> i
 	}
 
 	@Override
-	public void validate(Profile entity) throws CheckedException {
+	public void validate(Profile entity) throws UncheckedException {
 		// TODO Hacer el validador del perfil.
 	}
 }

@@ -6,7 +6,7 @@ import com.common.security.business.service.RoleService;
 import com.common.security.domain.model.Role;
 import com.common.security.persistence.dao.RoleDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los roles.
@@ -26,7 +26,7 @@ public class RoleServiceImpl extends SecurityBaseServiceImpl<Role, Long> impleme
 	}
 
 	@Override
-	public void validate(Role entity) throws CheckedException {
+	public void validate(Role entity) throws UncheckedException {
 		// TODO Hacer el validador del rol.
 	}
 }
