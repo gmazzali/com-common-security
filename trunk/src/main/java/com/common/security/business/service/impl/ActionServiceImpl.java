@@ -6,7 +6,7 @@ import com.common.security.business.service.ActionService;
 import com.common.security.domain.model.Action;
 import com.common.security.persistence.dao.ActionDao;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para las acciones.
@@ -26,7 +26,7 @@ public class ActionServiceImpl extends SecurityBaseServiceImpl<Action, Long> imp
 	}
 
 	@Override
-	public void validate(Action entity) throws CheckedException {
+	public void validate(Action entity) throws UncheckedException {
 		// TODO Hacer el validador de la acción.
 	}
 }

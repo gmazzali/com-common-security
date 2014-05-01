@@ -28,4 +28,6 @@ public interface UserService extends SecurityBaseService<User, Long> {
 	 * @return <i>true</i> en caso de que el usuario actualmente se encuentre deshabilitado, en caso contrario, retorna <i>false</i>.
 	 */
 	public Boolean isDisabledUser(User user);
+	
+	public Boolean login(String userName, String password);
 }

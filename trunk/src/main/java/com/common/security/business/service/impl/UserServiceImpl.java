@@ -11,7 +11,7 @@ import com.common.security.persistence.dao.UserDao;
 import com.common.util.business.tool.date.DatePrecision;
 import com.common.util.business.tool.date.DateUtil;
 import com.common.util.domain.annotation.Service;
-import com.common.util.domain.exception.CheckedException;
+import com.common.util.domain.exception.UncheckedException;
 
 /**
  * La clase que implementa la interfaz del servicio para los usuarios.
@@ -42,7 +42,13 @@ public class UserServiceImpl extends SecurityBaseServiceImpl<User, Long> impleme
 	}
 
 	@Override
-	public void validate(User entity) throws CheckedException {
+	public void validate(User entity) throws UncheckedException {
 		// TODO Hacer el validador del usuario.
+	}
+
+	@Override
+	public Boolean login(String userName, String password) {
+		// TODO Hacer el login del usuario.
+		return null;
 	}
 }
