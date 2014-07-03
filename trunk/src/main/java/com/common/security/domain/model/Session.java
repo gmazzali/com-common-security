@@ -98,7 +98,7 @@ public class Session extends Entity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**

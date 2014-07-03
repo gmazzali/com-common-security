@@ -3,11 +3,14 @@ package com.common.security.domain.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Permite representar una participación de un usuario dentro de un sistema dado.
@@ -48,12 +51,20 @@ public class Participation extends Temporal<Long> {
 		this.sessions = new HashSet<Session>();
 	}
 
+	@Id
+	@Override
+	@Column(name = "ID_SECURITY_PARTICIPATION", columnDefinition = "integer")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getId() {
+		return id;
+	}
+
 	/**
 	 * Retorna el usuario de la participación.
 	 * 
 	 * @return El usuario de la participación.
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_USER", referencedColumnName = "ID_SECURITY_USER", nullable = false)
 	public User getUser() {
 		return this.user;
@@ -74,7 +85,7 @@ public class Participation extends Temporal<Long> {
 	 * 
 	 * @return El sistema de la participación.
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_SYSTEM", referencedColumnName = "ID_SECURITY_SYSTEM", nullable = false)
 	public System getSystem() {
 		return this.system;
@@ -95,7 +106,7 @@ public class Participation extends Temporal<Long> {
 	 * 
 	 * @return El perfil con el que participa el usuario dentro del sistema.
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_PROFILE", referencedColumnName = "ID_SECURITY_PROFILE", nullable = false)
 	public Profile getProfile() {
 		return this.profile;
@@ -136,6 +147,7 @@ public class Participation extends Temporal<Long> {
 	 * 
 	 * @return El conjunto de sesiones que creo el usuario dentro del sistema.
 	 */
+	@OneToMany(mappedBy = Session.Attributes.PARTICIPATION, targetEntity = Participation.class, orphanRemoval = true)
 	public Set<Session> getSessions() {
 		return this.sessions;
 	}

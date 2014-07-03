@@ -82,9 +82,7 @@ public class User extends Temporal<Long> {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(super.toString());
-		buffer.append(" ");
-		buffer.append(this.username);
+		buffer.append(super.toString()).append(" ").append(this.username);
 		return buffer.toString();
 	}
 
@@ -93,7 +91,7 @@ public class User extends Temporal<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**

@@ -66,9 +66,7 @@ public class Role extends Temporal<Long> {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(super.toString());
-		buffer.append(" ");
-		buffer.append(this.name);
+		buffer.append(super.toString()).append(" ").append(this.name);
 		return buffer.toString();
 	}
 
@@ -77,7 +75,7 @@ public class Role extends Temporal<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**

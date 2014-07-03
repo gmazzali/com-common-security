@@ -16,8 +16,6 @@ import javax.persistence.TemporalType;
 
 import com.common.util.business.tool.FormatUtil;
 import com.common.util.business.tool.StringUtil;
-import com.common.util.business.tool.date.DatePrecision;
-import com.common.util.business.tool.date.DateUtil;
 import com.common.util.domain.model.Entity;
 
 /**
@@ -29,7 +27,7 @@ import com.common.util.domain.model.Entity;
  */
 @Table(name = "SECURITY_CHANGE_PASSWORDS")
 @javax.persistence.Entity(name = "ChangePassword")
-public class ChangePassword extends Entity<Long> implements Comparable<ChangePassword> {
+public class ChangePassword extends Entity<Long> {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -72,17 +70,12 @@ public class ChangePassword extends Entity<Long> implements Comparable<ChangePas
 		return buffer.toString();
 	}
 
-	@Override
-	public int compareTo(ChangePassword changePassword) {
-		return DateUtil.compare(this.changeDate, changePassword.changeDate, DatePrecision.MILLISECOND);
-	}
-
 	@Id
+	@Override
 	@Column(name = "ID_SECURITY_CHANGE_PASSWORD", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**

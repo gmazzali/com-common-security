@@ -3,7 +3,6 @@ package com.common.security.domain.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.common.util.domain.model.Entity;
 
 /**
  * Abstracción que representa un Sistema o Aplicativo (desde el punto de vista de la seguridad).
@@ -23,7 +20,7 @@ import com.common.util.domain.model.Entity;
  */
 @Table(name = "SECURITY_SYSTEMS")
 @javax.persistence.Entity(name = "System")
-public class System extends Entity<Long> {
+public class System extends Temporal<Long> {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -54,18 +51,16 @@ public class System extends Entity<Long> {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(super.toString());
-		buffer.append(" ");
-		buffer.append(this.name);
+		buffer.append(super.toString()).append(" ").append(this.name);
 		return buffer.toString();
 	}
 
 	@Id
+	@Override
 	@Column(name = "ID_SECURITY_SYSTEM", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**
@@ -73,7 +68,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El nombre del sistema.
 	 */
-	@Column(name = "NAME", columnDefinition = "text", nullable = false, unique = true)
+	@Column(name = "NAME", columnDefinition = "varchar", length = 50, nullable = false, unique = true)
 	public String getName() {
 		return name;
 	}
@@ -93,7 +88,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de perfiles del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Profile.Attributes.SYSTEM, targetEntity = Profile.class, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Profile.Attributes.SYSTEM, targetEntity = Profile.class, orphanRemoval = true)
 	public Set<Profile> getProfiles() {
 		return profiles;
 	}
@@ -139,7 +134,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de recursos del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Resource.Attributes.SYSTEM, targetEntity = Resource.class, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Resource.Attributes.SYSTEM, targetEntity = Resource.class, orphanRemoval = true)
 	public Set<Resource> getResources() {
 		return this.resources;
 	}
@@ -185,7 +180,7 @@ public class System extends Entity<Long> {
 	 * 
 	 * @return El conjunto de acciones del sistema.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = Action.Attributes.SYSTEM, targetEntity = Action.class, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Action.Attributes.SYSTEM, targetEntity = Action.class, orphanRemoval = true)
 	public Set<Action> getActions() {
 		return this.actions;
 	}
