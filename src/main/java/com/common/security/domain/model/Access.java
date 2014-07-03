@@ -72,7 +72,7 @@ public class Access extends Entity<Long> implements Comparable<Access> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Override
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	/**

@@ -42,6 +42,7 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	 */
 	protected Date validTo;
 
+	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("[");
