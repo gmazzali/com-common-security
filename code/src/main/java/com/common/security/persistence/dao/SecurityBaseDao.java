@@ -2,7 +2,7 @@ package com.common.security.persistence.dao;
 
 import java.io.Serializable;
 
-import com.common.util.domain.model.Persistence;
+import com.common.util.domain.model.entity.Persistence;
 import com.common.util.persistence.dao.BaseDao;
 
 /**

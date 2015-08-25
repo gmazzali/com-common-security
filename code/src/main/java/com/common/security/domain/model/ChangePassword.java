@@ -14,9 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.common.util.business.tool.FormatUtil;
+import com.common.util.business.tool.DateUtil;
 import com.common.util.business.tool.StringUtil;
-import com.common.util.domain.model.Entity;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * El historial de cambios de password de un usuario.
@@ -64,7 +64,7 @@ public class ChangePassword extends Entity<Long> {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(StringUtil.toString(this.user));
 		buffer.append(" ");
-		buffer.append(FormatUtil.formatDate(this.changeDate));
+		buffer.append(DateUtil.formatDate(this.changeDate));
 		buffer.append(" ");
 		buffer.append(this.encodePassword);
 		return buffer.toString();

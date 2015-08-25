@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.common.util.domain.model.Entity;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * Representa una tarea dentro del sistema.

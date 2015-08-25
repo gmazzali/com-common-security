@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TemporalType;
 
-import com.common.util.domain.model.Entity;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * Representa una sesión dentro del sistema.

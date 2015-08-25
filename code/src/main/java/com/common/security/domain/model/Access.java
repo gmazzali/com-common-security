@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.common.security.domain.util.Constants;
-import com.common.util.domain.model.Entity;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * La clase que representa un acceso a un recurso mediante una acción.

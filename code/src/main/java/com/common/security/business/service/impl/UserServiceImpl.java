@@ -3,14 +3,14 @@ package com.common.security.business.service.impl;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.common.security.business.service.UserService;
 import com.common.security.domain.model.Disablement;
 import com.common.security.domain.model.User;
 import com.common.security.persistence.dao.UserDao;
-import com.common.util.business.tool.date.DatePrecision;
-import com.common.util.business.tool.date.DateUtil;
-import com.common.util.domain.annotation.Service;
+import com.common.util.business.tool.DateUtil;
+import com.common.util.business.util.DatePrecisionEnum;
 import com.common.util.domain.exception.UncheckedException;
 
 /**
@@ -34,7 +34,7 @@ public class UserServiceImpl extends SecurityBaseServiceImpl<User, Long> impleme
 	public Boolean isDisabledUser(User user) {
 		Date today = new Date();
 		for (Disablement disablement : user.getDisablements()) {
-			if (DateUtil.between(today, disablement.getValidFrom(), disablement.getValidTo(), DatePrecision.MILLISECOND)) {
+			if (DateUtil.between(today, disablement.getValidFrom(), disablement.getValidTo(), DatePrecisionEnum.MILLISECOND)) {
 				return true;
 			}
 		}

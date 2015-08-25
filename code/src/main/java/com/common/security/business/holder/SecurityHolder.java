@@ -2,8 +2,9 @@ package com.common.security.business.holder;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Service;
+
 import com.common.security.domain.model.User;
-import com.common.util.domain.annotation.Service;
 
 /**
  * La clase donde vamos a mantener el sistema y el usuario que se encuentra logueado.
@@ -14,6 +15,7 @@ import com.common.util.domain.annotation.Service;
  */
 @Service
 public class SecurityHolder implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	/**

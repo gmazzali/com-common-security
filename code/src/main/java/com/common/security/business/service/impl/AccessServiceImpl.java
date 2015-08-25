@@ -1,11 +1,11 @@
 package com.common.security.business.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.common.security.business.service.AccessService;
 import com.common.security.domain.model.Access;
 import com.common.security.persistence.dao.AccessDao;
-import com.common.util.domain.annotation.Service;
 import com.common.util.domain.exception.UncheckedException;
 
 /**

@@ -10,8 +10,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.common.util.business.tool.FormatUtil;
-import com.common.util.domain.model.Entity;
+import com.common.util.business.tool.DateUtil;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * Representa una entidad temporal que posee un periodo de fechas acotado.
@@ -46,9 +46,9 @@ public abstract class Temporal<I extends Serializable> extends Entity<I> {
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("[");
-		buffer.append(FormatUtil.formatDate(this.validFrom));
+		buffer.append(DateUtil.formatDate(this.validFrom));
 		buffer.append("-");
-		buffer.append(FormatUtil.formatDate(this.validTo));
+		buffer.append(DateUtil.formatDate(this.validTo));
 		buffer.append("] ");
 		return buffer.toString();
 	}

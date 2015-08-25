@@ -1,11 +1,11 @@
 package com.common.security.business.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.common.security.business.service.RoleService;
 import com.common.security.domain.model.Role;
 import com.common.security.persistence.dao.RoleDao;
-import com.common.util.domain.annotation.Service;
 import com.common.util.domain.exception.UncheckedException;
 
 /**

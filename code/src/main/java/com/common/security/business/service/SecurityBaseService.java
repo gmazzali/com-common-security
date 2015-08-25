@@ -3,7 +3,7 @@ package com.common.security.business.service;
 import java.io.Serializable;
 
 import com.common.util.business.service.BaseService;
-import com.common.util.domain.model.Persistence;
+import com.common.util.domain.model.entity.Persistence;
 
 /**
  * La interfaz que define el servicio base para el framework de seguridad.

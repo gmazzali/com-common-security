@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.common.util.domain.model.Entity;
+import com.common.util.domain.model.entity.Entity;
 
 /**
  * La clase que representa una acción dentro de la aplicación.

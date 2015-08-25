@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.common.security.persistence.dao.SecurityBaseDao;
-import com.common.util.domain.model.Persistence;
+import com.common.util.domain.model.entity.Persistence;
 import com.common.util.persistence.dao.impl.BaseDaoImpl;
 
 /**

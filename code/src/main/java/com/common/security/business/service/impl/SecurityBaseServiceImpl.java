@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.common.security.business.service.SecurityBaseService;
 import com.common.util.business.service.impl.BaseServiceImpl;
-import com.common.util.domain.model.Persistence;
+import com.common.util.domain.model.entity.Persistence;
 
 /**
  * La clase que implementa la interfaz base para los servicios dentro de este framework.
