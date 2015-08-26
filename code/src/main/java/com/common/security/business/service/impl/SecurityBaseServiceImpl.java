@@ -20,5 +20,6 @@ import com.common.util.domain.model.entity.Persistence;
  */
 public abstract class SecurityBaseServiceImpl<E extends Persistence<PK>, PK extends Serializable> extends BaseServiceImpl<E, PK> implements
 		SecurityBaseService<E, PK> {
+
 	private static final long serialVersionUID = 1L;
 }

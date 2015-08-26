@@ -25,9 +25,9 @@ import com.common.util.domain.model.entity.Entity;
  * @author Guillermo Mazzali
  * @version 1.0
  */
-@Table(name = "SECURITY_CHANGE_PASSWORDS")
-@javax.persistence.Entity(name = "ChangePassword")
-public class ChangePassword extends Entity<Long> {
+@Table(name = "SECURITY_PASSWORDS_HISTORIES")
+@javax.persistence.Entity(name = "PasswordHistory")
+public class PasswordHistory extends Entity<Long> {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -55,7 +55,7 @@ public class ChangePassword extends Entity<Long> {
 	/**
 	 * El contructor de una historia de cambio de password de un usuario.
 	 */
-	public ChangePassword() {
+	public PasswordHistory() {
 		super();
 	}
 
@@ -72,7 +72,7 @@ public class ChangePassword extends Entity<Long> {
 
 	@Id
 	@Override
-	@Column(name = "ID_SECURITY_CHANGE_PASSWORD", columnDefinition = "integer")
+	@Column(name = "ID_SECURITY_PASSWORD_HISTORY", columnDefinition = "integer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;

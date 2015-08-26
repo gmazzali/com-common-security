@@ -17,9 +17,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class AccessServiceImpl extends SecurityBaseServiceImpl<Access, Long> implements AccessService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setAccessDao(AccessDao accessDao) {
 		this.setDao(accessDao);

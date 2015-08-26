@@ -29,18 +29,18 @@ public class Access extends Entity<Long> implements Comparable<Access> {
 	 * @see Entity.Attributes
 	 */
 	public interface Attributes extends Entity.Attributes {
-		public static final String RESOURCE = "resource";
 		public static final String ACTION = "action";
+		public static final String RESOURCE = "resource";
 	}
 
-	/**
-	 * El recurso al que queremos acceder.
-	 */
-	private Resource resource;
 	/**
 	 * La acción que estamos realizando para acceder.
 	 */
 	private Action action;
+	/**
+	 * El recurso al que queremos acceder.
+	 */
+	private Resource resource;
 
 	/**
 	 * El constructor de un acceso.
@@ -81,27 +81,6 @@ public class Access extends Entity<Long> implements Comparable<Access> {
 	 * @return El recurso de este acceso.
 	 */
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_SECURITY_RESOURCE", referencedColumnName = "ID_SECURITY_RESOURCE", nullable = false)
-	public Resource getResource() {
-		return resource;
-	}
-
-	/**
-	 * Permite cargar el recurso que corresponde a este acceso.
-	 * 
-	 * @param resource
-	 *            El recurso de este acceso.
-	 */
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
-	/**
-	 * Retorna el recurso de este acceso.
-	 * 
-	 * @return El recurso de este acceso.
-	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SECURITY_ACTION", referencedColumnName = "ID_SECURITY_ACTION", nullable = false)
 	public Action getAction() {
 		return action;
@@ -115,5 +94,26 @@ public class Access extends Entity<Long> implements Comparable<Access> {
 	 */
 	public void setAction(Action action) {
 		this.action = action;
+	}
+
+	/**
+	 * Retorna el recurso de este acceso.
+	 * 
+	 * @return El recurso de este acceso.
+	 */
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_SECURITY_RESOURCE", referencedColumnName = "ID_SECURITY_RESOURCE", nullable = false)
+	public Resource getResource() {
+		return resource;
+	}
+
+	/**
+	 * Permite cargar el recurso que corresponde a este acceso.
+	 * 
+	 * @param resource
+	 *            El recurso de este acceso.
+	 */
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 }

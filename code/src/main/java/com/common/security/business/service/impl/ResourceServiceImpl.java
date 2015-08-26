@@ -17,9 +17,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class ResourceServiceImpl extends SecurityBaseServiceImpl<Resource, Long> implements ResourceService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setResourceDao(ResourceDao resourceDao) {
 		this.setDao(resourceDao);

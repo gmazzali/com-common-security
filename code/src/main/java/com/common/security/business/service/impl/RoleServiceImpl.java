@@ -17,9 +17,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class RoleServiceImpl extends SecurityBaseServiceImpl<Role, Long> implements RoleService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setRoleDao(RoleDao roleDao) {
 		this.setDao(roleDao);

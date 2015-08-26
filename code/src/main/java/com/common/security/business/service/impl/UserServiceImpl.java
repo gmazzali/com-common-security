@@ -22,9 +22,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class UserServiceImpl extends SecurityBaseServiceImpl<User, Long> implements UserService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setUserDao(UserDao userDao) {
 		this.setDao(userDao);

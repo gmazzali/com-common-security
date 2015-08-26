@@ -17,9 +17,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class ActionServiceImpl extends SecurityBaseServiceImpl<Action, Long> implements ActionService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setActionDao(ActionDao actionDao) {
 		this.setDao(actionDao);

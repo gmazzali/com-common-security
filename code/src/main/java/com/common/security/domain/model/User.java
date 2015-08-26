@@ -64,7 +64,7 @@ public class User extends Temporal<Long> {
 	/**
 	 * El historial de cambios de password.
 	 */
-	private Set<ChangePassword> changePasswords;
+	private Set<PasswordHistory> passwordHistories;
 	/**
 	 * El historial de deshabilitaciones.
 	 */
@@ -75,7 +75,7 @@ public class User extends Temporal<Long> {
 	 */
 	public User() {
 		super();
-		this.changePasswords = new HashSet<ChangePassword>();
+		this.passwordHistories = new HashSet<PasswordHistory>();
 		this.disablements = new HashSet<Disablement>();
 	}
 
@@ -202,44 +202,44 @@ public class User extends Temporal<Long> {
 	 * 
 	 * @return El historial de los cambios de password que realizo el usuario.
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = ChangePassword.Attributes.USER, targetEntity = ChangePassword.class, orphanRemoval = true)
-	public Set<ChangePassword> getChangePassword() {
-		return changePasswords;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = PasswordHistory.Attributes.USER, targetEntity = PasswordHistory.class, orphanRemoval = true)
+	public Set<PasswordHistory> getChangePassword() {
+		return passwordHistories;
 	}
 
 	/**
 	 * Carga el historial de los cambios de password que realizo el usuario.
 	 * 
-	 * @param changePasswords
+	 * @param passwordHistories
 	 *            El historial de los cambios de password que realizo el usuario.
 	 */
-	public void setChangePassword(Set<ChangePassword> changePasswords) {
-		this.changePasswords = changePasswords;
+	public void setChangePassword(Set<PasswordHistory> passwordHistories) {
+		this.passwordHistories = passwordHistories;
 	}
 
 	/**
 	 * Permite cargar una entrada en el historial de cambios de password del usuario.
 	 * 
-	 * @param changePassword
+	 * @param passwordHistory
 	 *            La entrada que vamos a guardar para este usuario.
 	 */
-	public void addChangePassword(ChangePassword changePassword) {
-		if (changePassword != null) {
-			this.changePasswords.add(changePassword);
-			changePassword.setUser(this);
+	public void addChangePassword(PasswordHistory passwordHistory) {
+		if (passwordHistory != null) {
+			this.passwordHistories.add(passwordHistory);
+			passwordHistory.setUser(this);
 		}
 	}
 
 	/**
 	 * Permite quitar una entrada en el historial de cambios de password del usuario.
 	 * 
-	 * @param changePassword
+	 * @param passwordHistory
 	 *            La entrada que vamos a quitar de este usuario.
 	 */
-	public void removeChangePassword(ChangePassword changePassword) {
-		if (this.getChangePassword().contains(changePassword)) {
-			this.changePasswords.remove(changePassword);
-			changePassword.setUser(null);
+	public void removeChangePassword(PasswordHistory passwordHistory) {
+		if (this.getChangePassword().contains(passwordHistory)) {
+			this.passwordHistories.remove(passwordHistory);
+			passwordHistory.setUser(null);
 		}
 	}
 
@@ -256,7 +256,7 @@ public class User extends Temporal<Long> {
 	/**
 	 * Carga el historial de las deshabilitaciones del usuario.
 	 * 
-	 * @param changePasswords
+	 * @param passwordHistories
 	 *            El historial de las deshabilitaciones del usuario.
 	 */
 	public void setDisablements(Set<Disablement> disablements) {

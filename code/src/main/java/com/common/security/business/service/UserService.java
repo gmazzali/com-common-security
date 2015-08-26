@@ -1,7 +1,6 @@
 package com.common.security.business.service;
 
 import com.common.security.domain.model.User;
-import com.common.security.persistence.dao.UserDao;
 
 /**
  * La interfaz del servicio para los usuarios.
@@ -13,14 +12,6 @@ import com.common.security.persistence.dao.UserDao;
 public interface UserService extends SecurityBaseService<User, Long> {
 
 	/**
-	 * Se encarga de cargar el DAO de los usuarios.
-	 * 
-	 * @param userDao
-	 *            El DAO de los usuarios.
-	 */
-	public void setUserDao(UserDao userDao);
-
-	/**
 	 * Permite saber si un usuario se encuentra deshabilitado dentro del sistema.
 	 * 
 	 * @param El
@@ -28,6 +19,6 @@ public interface UserService extends SecurityBaseService<User, Long> {
 	 * @return <i>true</i> en caso de que el usuario actualmente se encuentre deshabilitado, en caso contrario, retorna <i>false</i>.
 	 */
 	public Boolean isDisabledUser(User user);
-	
+
 	public Boolean login(String userName, String password);
 }

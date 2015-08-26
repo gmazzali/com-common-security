@@ -17,9 +17,9 @@ import com.common.util.domain.exception.UncheckedException;
  */
 @Service
 public class ProfileServiceImpl extends SecurityBaseServiceImpl<Profile, Long> implements ProfileService {
+
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	@Autowired
 	public void setProfileDao(ProfileDao profileDao) {
 		this.setDao(profileDao);

@@ -1,6 +1,7 @@
 package com.common.security.business.holder;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class SecurityHolder implements Serializable {
 	 * El usuario logueado.
 	 */
 	private User user;
+	/**
+	 * La fecha del logueo del usuario dentro del sistema.
+	 */
+	private Date fechaLogin;
 
 	/**
 	 * El constructor del holder de seguridad.
@@ -70,5 +75,24 @@ public class SecurityHolder implements Serializable {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	/**
+	 * Permite recuperar la fecha a la que se logueo el usuario al sistema.
+	 * 
+	 * @return La fecha a la que se logueo el usuario al sistema.
+	 */
+	public Date getFechaLogin() {
+		return fechaLogin;
+	}
+
+	/**
+	 * Permite cargar la fecha a la que se logueo el usuario al sistema.
+	 * 
+	 * @param user
+	 *            La fecha a la que se logueo el usuario al sistema.
+	 */
+	public void setFechaLogin(Date fechaLogin) {
+		this.fechaLogin = fechaLogin;
 	}
 }
